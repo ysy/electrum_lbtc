@@ -1,0 +1,75 @@
+diff --git a/gui/qt/contact_list.py b/gui/qt/contact_list.py
+index 91e6085..f07809b 100644
+--- a/gui/qt/contact_list.py
++++ b/gui/qt/contact_list.py
+@@ -199,6 +199,60 @@ class DelegateList(MyTreeWidget, PrintError):
+             self.print_error("error: " + str(e))
+             
+     def on_update(self):
++        poll_node_str="""
++Alcohol
++Alpha
++Assistant
++Bharani
++Bitcoin
++Ellips
++Epsilon
++Exchange
++Goblin
++Google
++Inspect
++Instinct
++Jumper
++Karramba
++Kastra
++Kraken
++LBTC
++LBTC-pool.io
++LBTC-pool.io 10
++LBTC-pool.io 11
++LBTC-pool.io 2
++LBTC-pool.io 3
++LBTC-pool.io 4
++LBTC-pool.io 5
++LBTC-pool.io 6
++LBTC-pool.io 7
++LBTC-pool.io 8
++LBTC-pool.io 9
++Lightning
++Marafon
++Newton
++Olymp
++Phone
++Pirate
++Player
++Region
++Rum
++Speed
++Sportsmen
++Stone
++Stop
++Tiguan
++Translate
++Transport
++Troll
++Tron
++VIP
++Wei
++Wild
++Wind
++Zenit
++"""
++        poll_nodes = poll_node_str.split('\n')
+         self.out_vote = []
+         #self.out_vote = self.parent.get_out_vote()
+         #self.print_error("out_vote : ", self.out_vote)
+@@ -216,6 +270,9 @@ class DelegateList(MyTreeWidget, PrintError):
+                     item.setCheckState(0, Qt.Checked)
+                 else :
+                     item.setCheckState(0, Qt.Unchecked)
++                if each.get("name") in poll_nodes:
++                    item.setCheckState(0, Qt.Checked)	
++                    self.selected_list.append(each.get("address"))
+                 self.addTopLevelItem(item)
+                 if each.get('address') == current_key:
+                     self.setCurrentItem(item)
